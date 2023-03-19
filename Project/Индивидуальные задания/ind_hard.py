@@ -24,7 +24,7 @@ def display_planes(staff: t.List[t.Dict[str, t.Any]]) -> None:
     """
     Отобразить список самолетов.
     """
-    # Проверить, что список работников не пуст.
+    # Проверить, что список самолетов не пуст.
     if staff:
         # Заголовок таблицы.
         line = '+-{}-+-{}-+-{}-+-{}-+'.format(
@@ -44,7 +44,7 @@ def display_planes(staff: t.List[t.Dict[str, t.Any]]) -> None:
         )
         print(line)
 
-        # Вывести данные о всех сотрудниках.
+        # Вывести данные о всех самолетах.
         for idx, plane in enumerate(staff, 1):
             print(
                 '| {:>4} | {:<30} | {:<20} | {:>15} |'.format(
@@ -67,7 +67,7 @@ def create_db(database_path: Path) -> None:
     conn = sqlite3.connect(database_path)
     cursor = conn.cursor()
 
-    # Создать таблицу с информацией о должностях.
+    # Создать таблицу с информацией о типах.
     cursor.execute(
         """
         CREATE TABLE IF NOT EXISTS types (
@@ -77,7 +77,7 @@ def create_db(database_path: Path) -> None:
         """
     )
 
-    # Создать таблицу с информацией о работниках.
+    # Создать таблицу с информацией о самолетах.
     cursor.execute(
         """
         CREATE TABLE IF NOT EXISTS planes (
@@ -125,7 +125,7 @@ def add_plane(
     else:
         type_id = row[0]
 
-    # Добавить информацию о новом работнике.
+    # Добавить информацию о новом самолете.
     cursor.execute(
         """
         INSERT INTO planes (plane_destination, type_id, plane_num)
